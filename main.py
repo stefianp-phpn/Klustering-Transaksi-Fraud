@@ -61,7 +61,7 @@ if uploaded_file:
         #combined = pd.concat([scaled_df.reset_index(drop=True), encoded_df.reset_index(drop=True)], axis=1)
 
         # Step 4: SVD + DBSCAN
-        reduced = svd.transform(combined.values)
+        #reduced = svd.transform(combined.values)
         #labels = dbscan.fit_predict(reduced)
         #df['Cluster'] = labels
 
