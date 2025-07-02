@@ -47,21 +47,21 @@ if uploaded_file:
 
         encoded_df = pd.DataFrame(encoded_array, columns=temp_column)
         encoded_df = encoded_df.reindex(columns=encoded_columns, fill_value=0)
-                
+        combined = pd.concat(df[num_cols].reset_index(drop=True), encoded_df.reset_index(drop=True)], axis=1)       
         #missing = set(encoded_columns) - set(encoded_df.columns)
         #extra = set(encoded_df.columns) - set(encoded_columns)
         #st.write("❗ Kolom hilang dari data saat ini:", missing)
         #st.write("❗ Kolom tambahan yang tidak dikenali:", extra)   
                 
         # Step 2: Scaling
-        scaled_array = scaler.transform(df[num_cols])
-        scaled_df = pd.DataFrame(scaled_array, columns=num_cols)
+        #scaled_array = scaler.transform(combined)
+        #scaled_df = pd.DataFrame(scaled_array, columns=num_cols)
 
         # Step 3: Gabungkan
         #combined = pd.concat([scaled_df.reset_index(drop=True), encoded_df.reset_index(drop=True)], axis=1)
 
         # Step 4: SVD + DBSCAN
-        #reduced = svd.transform(combined.values)
+        reduced = svd.transform(combined.values)
         #labels = dbscan.fit_predict(reduced)
         #df['Cluster'] = labels
 
