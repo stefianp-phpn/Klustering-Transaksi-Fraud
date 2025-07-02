@@ -39,7 +39,7 @@ if uploaded_file:
         encoded_array = encoder.transform(df[cat_cols])
         st.write("📌 Bentuk hasil encoded_array:", encoded_array.shape)        
         temp_column = encoder.get_feature_names_out(cat_cols)
-        st.write("📌 Nama kolom hasil encoding saat ini:", temp_column)  
+        st.write("📌 Nama kolom hasil encoding saat ini:", temp_column.shape)  
 
         #encoded_df = pd.DataFrame(encoded_array, columns=temp_column)
         #encoded_df = encoded_df.reindex(columns=encoded_columns, fill_value=0)
