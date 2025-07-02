@@ -42,7 +42,7 @@ if uploaded_file:
         #st.write("Tipe data encoded_array:", type(encoded_array))        
         st.write("📌 Nama kolom hasil encoding saat ini:", temp_column)
         st.write("📏 Jumlah kolom hasil encoding:", len(temp_column))        
-        #st.write("📌 Nama kolom hasil encoding training:", encoded_columns.shape)        
+        st.write("📌 Nama kolom hasil encoding training:", encoded_columns.shape)        
 
         #encoded_df = pd.DataFrame(encoded_array, columns=temp_column)
         #encoded_df = encoded_df.reindex(columns=encoded_columns, fill_value=0)
