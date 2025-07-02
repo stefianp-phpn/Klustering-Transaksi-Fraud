@@ -54,8 +54,8 @@ if uploaded_file:
         #st.write("❗ Kolom tambahan yang tidak dikenali:", extra)   
                 
         # Step 2: Scaling
-        #scaled_array = scaler.transform(df[num_cols])
-        #scaled_df = pd.DataFrame(scaled_array, columns=num_cols)
+        scaled_array = scaler.transform(df[num_cols])
+        scaled_df = pd.DataFrame(scaled_array, columns=num_cols)
 
         # Step 3: Gabungkan
         #combined = pd.concat([scaled_df.reset_index(drop=True), encoded_df.reset_index(drop=True)], axis=1)
