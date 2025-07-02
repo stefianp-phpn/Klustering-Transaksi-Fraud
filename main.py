@@ -26,7 +26,7 @@ uploaded_file = st.file_uploader("📂 Upload CSV Dataset", type=["csv"])
 if uploaded_file:
     df = pd.read_csv(uploaded_file)
     st.write("📄 Data yang diunggah:")
-    st.dataframe(df.head())
+    st.dataframe(df.head(10))
 
     if not set(expected_columns).issubset(set(df.columns)):
         st.error("❌ Kolom dataset tidak lengkap atau tidak sesuai.")
@@ -37,14 +37,15 @@ if uploaded_file:
     try:
         # Step 1: Encoding
         encoded_array = encoder.transform(df[cat_cols])
-        temp_column = encoder.get_feature_names_out(cat_cols)
+        temp_column = encoder.get_feature_names_out(cat_cols)     
+        encoded_df = pd.DataFrame(encoded_array, columns=temp_column)
+        encoded_df = encoded_df.reindex(columns=encoded_columns, fill_value=0)
+                
         missing = set(encoded_columns) - set(encoded_df.columns)
         extra = set(encoded_df.columns) - set(encoded_columns)
         st.write("❗ Kolom hilang dari data saat ini:", missing)
-        st.write("❗ Kolom tambahan yang tidak dikenali:", extra)        
-        encoded_df = pd.DataFrame(encoded_array, columns=temp_column)
-        encoded_df = encoded_df.reindex(columns=encoded_columns, fill_value=0)
-        
+        st.write("❗ Kolom tambahan yang tidak dikenali:", extra)   
+                
         # Step 2: Scaling
         scaled_array = scaler.transform(df[num_cols])
         scaled_df = pd.DataFrame(scaled_array, columns=num_cols)
