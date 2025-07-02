@@ -38,7 +38,7 @@ if uploaded_file:
         # Step 1: Encoding
         encoded_array = encoder.transform(df[cat_cols])
         st.write("📌 Bentuk hasil encoded_array:", encoded_array.shape)        
-        temp_column = encoder.get_feature_names_out(cat_cols).to_list()
+        temp_column = encoder.get_feature_names_out(cat_cols).tolist()
         st.write("📌 Nama kolom hasil encoding saat ini:", temp_column.shape)
         st.write("📌 Nama kolom hasil encoding training:", encoded_columns.shape)        
 
