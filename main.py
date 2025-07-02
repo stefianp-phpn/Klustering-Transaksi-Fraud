@@ -54,19 +54,19 @@ if uploaded_file:
         #st.write("❗ Kolom tambahan yang tidak dikenali:", extra)   
                 
         # Step 2: Scaling
-        scaled_array = scaler.transform(df[num_cols])
-        scaled_df = pd.DataFrame(scaled_array, columns=num_cols)
+        #scaled_array = scaler.transform(df[num_cols])
+        #scaled_df = pd.DataFrame(scaled_array, columns=num_cols)
 
         # Step 3: Gabungkan
-        combined = pd.concat([scaled_df.reset_index(drop=True), encoded_df.reset_index(drop=True)], axis=1)
+        #combined = pd.concat([scaled_df.reset_index(drop=True), encoded_df.reset_index(drop=True)], axis=1)
 
         # Step 4: SVD + DBSCAN
-        reduced = svd.transform(combined.values)
-        labels = dbscan.fit_predict(reduced)
-        df['Cluster'] = labels
+        #reduced = svd.transform(combined.values)
+        #labels = dbscan.fit_predict(reduced)
+        #df['Cluster'] = labels
 
-        st.success("✅ Klastering berhasil dilakukan!")
-        st.dataframe(df)
+        #st.success("✅ Klastering berhasil dilakukan!")
+        #st.dataframe(df)
 
     except Exception as e:
         st.error(f"❌ Terjadi error saat menjalankan pipeline: {e}")
