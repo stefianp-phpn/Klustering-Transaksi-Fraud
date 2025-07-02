@@ -47,6 +47,8 @@ if uploaded_file:
 
         encoded_df = pd.DataFrame(encoded_array, columns=temp_column)
         encoded_df = encoded_df.reindex(columns=encoded_columns, fill_value=0)
+        st.dataframe(encoded_df.head(10))
+        
                
         #missing = set(encoded_columns) - set(encoded_df.columns)
         #extra = set(encoded_df.columns) - set(encoded_columns)
