@@ -38,12 +38,12 @@ if uploaded_file:
     try:
         # Step 1: Encoding
         encoded_array = encoder.transform(df[cat_cols])
-        st.write("📌 Bentuk hasil encoded_array:", encoded_array.shape)        
+        #st.write("📌 Bentuk hasil encoded_array:", encoded_array.shape)        
         temp_column = encoder.get_feature_names_out(cat_cols)
-        st.write("Tipe data encoded_array:", type(encoded_array))        
-        st.write("📌 Nama kolom hasil encoding saat ini:", temp_column)
-        st.write("📏 Jumlah kolom hasil encoding:", len(temp_column))        
-        st.write("📌 Nama kolom hasil encoding training:", encoded_columns.shape)        
+        #st.write("Tipe data encoded_array:", type(encoded_array))        
+        #st.write("📌 Nama kolom hasil encoding saat ini:", temp_column)
+        #st.write("📏 Jumlah kolom hasil encoding:", len(temp_column))        
+        #st.write("📌 Nama kolom hasil encoding training:", encoded_columns.shape)        
 
         encoded_df = pd.DataFrame(encoded_array, columns=temp_column)
         encoded_df = encoded_df.reindex(columns=encoded_columns, fill_value=0)
@@ -54,19 +54,19 @@ if uploaded_file:
         #st.write("❗ Kolom tambahan yang tidak dikenali:", extra)   
                 
         # Step 2: Scaling
-        #scaled_array = scaler.transform(df[num_cols])
-        #scaled_df = pd.DataFrame(scaled_array, columns=num_cols)
+        scaled_array = scaler.transform(df[num_cols])
+        scaled_df = pd.DataFrame(scaled_array, columns=num_cols)
 
         # Step 3: Gabungkan
-        #combined = pd.concat([scaled_df.reset_index(drop=True), encoded_df.reset_index(drop=True)], axis=1)
+        combined = pd.concat([scaled_df.reset_index(drop=True), encoded_df.reset_index(drop=True)], axis=1)
 
         # Step 4: SVD + DBSCAN
-        #reduced = svd.transform(combined.values)
-        #labels = dbscan.fit_predict(reduced)
-        #df['Cluster'] = labels
+        reduced = svd.transform(combined.values)
+        labels = dbscan.fit_predict(reduced)
+        df['Cluster'] = labels
 
-        #st.success("✅ Klastering berhasil dilakukan!")
-        #st.dataframe(df)
+        st.success("✅ Klastering berhasil dilakukan!")
+        st.dataframe(df)
 
     except Exception as e:
         st.error(f"❌ Terjadi error saat menjalankan pipeline: {e}")
