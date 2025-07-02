@@ -41,6 +41,7 @@ if uploaded_file:
         temp_column = encoder.get_feature_names_out(cat_cols)
         #st.write("Tipe data encoded_array:", type(encoded_array))        
         st.write("📌 Nama kolom hasil encoding saat ini:", temp_column)
+        st.write("📏 Jumlah kolom hasil encoding:", len(temp_column))        
         #st.write("📌 Nama kolom hasil encoding training:", encoded_columns.shape)        
 
         #encoded_df = pd.DataFrame(encoded_array, columns=temp_column)
