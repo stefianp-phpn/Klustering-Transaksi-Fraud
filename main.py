@@ -41,6 +41,11 @@ if uploaded_file:
         encoded_df = pd.DataFrame(encoded_array, columns=temp_column)
         encoded_df = encoded_df.reindex(columns=encoded_columns, fill_value=0)
 
+        missing = set(encoded_columns) - set(encoded_df.columns)
+        extra = set(encoded_df.columns) - set(encoded_columns)
+        st.write("❗ Kolom hilang dari data saat ini:", missing)
+        st.write("❗ Kolom tambahan yang tidak dikenali:", extra)
+        
         # Step 2: Scaling
         scaled_array = scaler.transform(df[num_cols])
         scaled_df = pd.DataFrame(scaled_array, columns=num_cols)
