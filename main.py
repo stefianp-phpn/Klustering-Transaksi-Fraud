@@ -32,8 +32,8 @@ if uploaded_file:
         st.error("❌ Kolom dataset tidak lengkap atau tidak sesuai.")
         st.stop()
 
-    df = df[expected_columns]
-    st.dataframe(df.head())        
+    #df = df[expected_columns]
+    #st.dataframe(df.head())        
 
     try:
         # Step 1: Encoding
@@ -45,8 +45,8 @@ if uploaded_file:
         st.write("📏 Jumlah kolom hasil encoding:", len(temp_column))        
         st.write("📌 Nama kolom hasil encoding training:", encoded_columns.shape)        
 
-        #encoded_df = pd.DataFrame(encoded_array, columns=temp_column)
-        #encoded_df = encoded_df.reindex(columns=encoded_columns, fill_value=0)
+        encoded_df = pd.DataFrame(encoded_array, columns=temp_column)
+        encoded_df = encoded_df.reindex(columns=encoded_columns, fill_value=0)
                 
         #missing = set(encoded_columns) - set(encoded_df.columns)
         #extra = set(encoded_df.columns) - set(encoded_columns)
