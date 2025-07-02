@@ -33,7 +33,7 @@ if uploaded_file:
         st.stop()
 
     df = df[expected_columns]
-    st.dataframe(        
+    st.dataframe(df.head())        
 
     try:
         # Step 1: Encoding
