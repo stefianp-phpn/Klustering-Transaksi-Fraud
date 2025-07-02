@@ -37,7 +37,8 @@ if uploaded_file:
     try:
         # Step 1: Encoding
         encoded_array = encoder.transform(df[cat_cols])
-        encoded_df = pd.DataFrame(encoded_array, columns=encoder.get_feature_names_out(cat_cols))
+        temp_column = encoder.get_feature_names_out(cat_cols)        
+        encoded_df = pd.DataFrame(encoded_array, columns=temp_column)
         encoded_df = encoded_df.reindex(columns=encoded_columns, fill_value=0)
 
         # Step 2: Scaling
