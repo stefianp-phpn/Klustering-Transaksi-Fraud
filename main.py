@@ -37,14 +37,13 @@ if uploaded_file:
     try:
         # Step 1: Encoding
         encoded_array = encoder.transform(df[cat_cols])
-        temp_column = encoder.get_feature_names_out(cat_cols)        
-        encoded_df = pd.DataFrame(encoded_array, columns=temp_column)
-        encoded_df = encoded_df.reindex(columns=encoded_columns, fill_value=0)
-
+        temp_column = encoder.get_feature_names_out(cat_cols)
         missing = set(encoded_columns) - set(encoded_df.columns)
         extra = set(encoded_df.columns) - set(encoded_columns)
         st.write("❗ Kolom hilang dari data saat ini:", missing)
-        st.write("❗ Kolom tambahan yang tidak dikenali:", extra)
+        st.write("❗ Kolom tambahan yang tidak dikenali:", extra)        
+        encoded_df = pd.DataFrame(encoded_array, columns=temp_column)
+        encoded_df = encoded_df.reindex(columns=encoded_columns, fill_value=0)
         
         # Step 2: Scaling
         scaled_array = scaler.transform(df[num_cols])
