@@ -70,7 +70,7 @@ if uploaded_file:
                 
         # Step 4: SVD + DBSCAN
         reduced = svd.transform(combined.values)
-        st.write(reduced)        
+        st.write(reduced.head())        
         #labels = dbscan.fit_predict(reduced)
         #df['Cluster'] = labels
 
