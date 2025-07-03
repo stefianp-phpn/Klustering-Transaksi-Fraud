@@ -13,8 +13,8 @@ encoded_columns = modul_dict['encoded_columns']  # typo: tadi kamu tulis encoded
 numerik_cols = joblib.load('num_cols.pkl')
 
 # Kolom input
-num_cols = ['TransactionAmount', 'CustomerAge', 'TransactionDuration', 'CustomerAge',
-            'TransactionAmount','time_deff', 'Mean_Transaction', 'Mean_Account_Balance']
+num_cols = ['TransactionAmount', 'CustomerAge', 'TransactionDuration', 'LoginAttempts',
+            'AccountBalance','time_deff', 'Mean_Transaction', 'Mean_Account_Balance']
 
 cat_cols = ['AccountID', 'TransactionType', 'Location', 'DeviceID', 'IP Address',
             'MerchantID', 'Channel', 'CustomerOccupation']
