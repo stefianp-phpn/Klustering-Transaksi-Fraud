@@ -75,7 +75,7 @@ if uploaded_file:
         df['Cluster'] = labels
 
         st.success("✅ Klastering berhasil dilakukan!")
-        st.dataframe(df['Cluster'])
+        st.dataframe(df['Cluster'].value_counts())
                 
         st.dataframe(df)
 
