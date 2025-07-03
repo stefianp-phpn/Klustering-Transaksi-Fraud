@@ -10,6 +10,7 @@ scaler = modul_dict['scaler']
 svd = modul_dict['svd']
 dbscan = modul_dict['dbscan']
 encoded_columns = modul_dict['encoded_columns']  # typo: tadi kamu tulis encoded_column (singular)
+numerik_cols = joblib.load('num_cols.pkl')
 
 # Kolom input
 num_cols = ['AccountBalance', 'LoginAttempts', 'TransactionDuration', 'CustomerAge',
@@ -58,7 +59,7 @@ if uploaded_file:
         st.dataframe(df[num_cols].head())
                 
         # Step 2: Scaling
-        scaled_array = scaler.transform(df[num_cols])
+        scaled_array = scaler.transform(numerik_cols)
         #scaled_df = pd.DataFrame(scaled_array, columns=num_cols)
 
         # Step 3: Gabungkan
