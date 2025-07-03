@@ -57,7 +57,7 @@ if uploaded_file:
         #st.write("❗ Kolom tambahan yang tidak dikenali:", extra)   
         st.dataframe(df[cat_cols].head())
         st.dataframe(df[num_cols].head())
-        st.write(numerik_cols)
+        st.write("Tipe data numerik kolom:", type(numerik_cols))
                 
         # Step 2: Scaling
         #scaled_array = scaler.transform(df[num_cols])
