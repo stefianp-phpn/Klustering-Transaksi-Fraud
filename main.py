@@ -25,7 +25,7 @@ st.title("🔍 Clustering Dataset (DBSCAN)")
 
 uploaded_file = st.file_uploader("📂 Upload CSV Dataset", type=["csv"])
 if uploaded_file:
-    df = pd.read_csv(uploaded_file)
+    df = pd.read_csv('my_data.csv')
     st.write("📄 Data yang diunggah:")
     st.dataframe(df.head(10))
 
