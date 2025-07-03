@@ -78,7 +78,7 @@ if uploaded_file:
         st.dataframe(df['Cluster'].value_counts())
         st.write()
         st.write("Kluster 0 adalah Fraud")
-        st.write("Kluster 1 dan -1 adalah Non-Fraud)
+        st.write("Kluster 1 dan -1 adalah Non-Fraud")
         st.write()
         st.dataframe(df)
 
