@@ -23,7 +23,7 @@ expected_columns = num_cols + cat_cols
 
 st.title("🔍 Clustering Dataset (DBSCAN)")
 
-uploaded_file = st.dataframe("my_data.csv")
+uploaded_file = st.file_uploader("📂 Upload CSV Dataset", type=["csv"])
 if uploaded_file:
     df = pd.read_csv(uploaded_file)
     st.write("📄 Data yang diunggah:")
