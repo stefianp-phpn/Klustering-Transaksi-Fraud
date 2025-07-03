@@ -13,7 +13,7 @@ encoded_columns = modul_dict['encoded_columns']  # typo: tadi kamu tulis encoded
 numerik_cols = joblib.load('num_cols.pkl')
 
 # Kolom input
-num_cols = ['AccountBalance', 'LoginAttempts', 'TransactionDuration', 'CustomerAge',
+num_cols = ['TransactionAmount', 'CustomerAge', 'TransactionDuration', 'CustomerAge',
             'TransactionAmount','time_deff', 'Mean_Transaction', 'Mean_Account_Balance']
 
 cat_cols = ['AccountID', 'TransactionType', 'Location', 'DeviceID', 'IP Address',
@@ -57,7 +57,7 @@ if uploaded_file:
         #st.write("❗ Kolom tambahan yang tidak dikenali:", extra)   
         st.dataframe(df[cat_cols].head())
         st.dataframe(df[num_cols].head())
-        st.write("Tipe data numerik kolom:", type(numerik_cols))
+        #st.write("Tipe data numerik kolom:", type(numerik_cols))
                 
         # Step 2: Scaling
         #scaled_array = scaler.transform(df[num_cols])
