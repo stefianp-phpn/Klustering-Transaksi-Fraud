@@ -57,9 +57,10 @@ if uploaded_file:
         #st.write("❗ Kolom tambahan yang tidak dikenali:", extra)   
         st.dataframe(df[cat_cols].head())
         st.dataframe(df[num_cols].head())
+        st.write(numerik_cols)
                 
         # Step 2: Scaling
-        scaled_array = scaler.transform(numerik_cols)
+        #scaled_array = scaler.transform(df[num_cols])
         #scaled_df = pd.DataFrame(scaled_array, columns=num_cols)
 
         # Step 3: Gabungkan
