@@ -76,6 +76,10 @@ if uploaded_file:
 
         st.success("✅ Klastering berhasil dilakukan!")
         st.dataframe(df)
+        st.dataframe(df['Cluster'].value_counts().reset_index().rename(columns={
+        'index': 'Cluster',
+        'Cluster': 'Jumlah'}))
+
 
     except Exception as e:
         st.error(f"❌ Terjadi error saat menjalankan pipeline: {e}")
