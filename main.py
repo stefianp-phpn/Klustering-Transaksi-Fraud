@@ -65,8 +65,9 @@ if uploaded_file:
         st.dataframe(scaled_df.head())
 
         # Step 3: Gabungkan
-        #combined = pd.concat([scaled_df.reset_index(drop=True), encoded_df.reset_index(drop=True)], axis=1)
-
+        combined = pd.concat([scaled_df.reset_index(drop=True), encoded_df.reset_index(drop=True)], axis=1)
+        st.dataframe(combined.head())
+                
         # Step 4: SVD + DBSCAN
         #reduced = svd.transform(combined.values)
         #labels = dbscan.fit_predict(reduced)
