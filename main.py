@@ -80,6 +80,7 @@ if uploaded_file:
         st.write("Kluster 0 adalah Fraud")
         st.write("Kluster 1 dan -1 adalah Non-Fraud")
         st.write()
+        df_final['Cluster'] = df['Cluster'].replace({0 : 'Fraud', 1 : 'Non-Fraud', -1 : 'Non-Fraud'})        
         st.dataframe(df)
 
     except Exception as e:
