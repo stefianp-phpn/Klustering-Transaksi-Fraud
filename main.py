@@ -71,11 +71,11 @@ if uploaded_file:
         # Step 4: SVD + DBSCAN
         reduced = svd.transform(combined.values)
         st.write(reduced.head())        
-        #labels = dbscan.fit_predict(reduced)
-        #df['Cluster'] = labels
+        labels = dbscan.fit_predict(reduced)
+        df['Cluster'] = labels
 
-        #st.success("✅ Klastering berhasil dilakukan!")
-        #st.dataframe(df)
+        st.success("✅ Klastering berhasil dilakukan!")
+        st.dataframe(df)
 
     except Exception as e:
         st.error(f"❌ Terjadi error saat menjalankan pipeline: {e}")
