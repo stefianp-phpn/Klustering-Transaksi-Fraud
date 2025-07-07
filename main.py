@@ -101,10 +101,10 @@ if uploaded_file:
         #if 'button' not in st.session_state:
          #   st.session_state.button = False
         
-        #def click_button():
-        #    st.session_state.button = not st.session_state.button
+        def click_button_non():
+            st.session_state.button = not st.session_state.button
 
-        st.button('Transaksi Non-Fraud', on_click=click_button)        
+        st.button('Transaksi Non-Fraud', on_click=click_button_non)        
         
         if st.session_state.button:
             df_non_fraud = df[df['Cluster'] == 'Non-Fraud']
