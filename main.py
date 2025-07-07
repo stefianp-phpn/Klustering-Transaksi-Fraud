@@ -92,12 +92,11 @@ if uploaded_file:
         def click_button():
             st.session_state.button = not st.session_state.button
 
-        st.button('Click me', on_click=click_button)
-        df_fraud = df[df['Cluster'] == 'Fraud']
-        st.dataframe(df_fraud)        
+        st.button('Transaksi Fraud', on_click=click_button)        
         
-        #if st.button("Transaksi Fraud"):
-           
-
+        if st.session_state.button:
+            df_fraud = df[df['Cluster'] == 'Fraud']
+            st.dataframe(df_fraud)
+            
     except Exception as e:
         st.error(f"❌ Terjadi error saat menjalankan pipeline: {e}")
