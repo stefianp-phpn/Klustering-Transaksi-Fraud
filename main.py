@@ -86,28 +86,33 @@ if uploaded_file:
         df['Cluster'] = df['Cluster'].replace({0 : 'Fraud', 1 : 'Non-Fraud', -1 : 'Non-Fraud'})        
         st.dataframe(df)
         
-        if 'button' not in st.session_state:
-            st.session_state.button = False
-        
-        def click_button():
-            st.session_state.button = not st.session_state.button
+        if 'button_fraud' not in st.session_state:
+        st.session_state.button_fraud = False
 
-        st.button('Transaksi Fraud', on_click=click_button)        
-        
-        if st.session_state.button:
+        if 'button_non_fraud' not in st.session_state:
+            st.session_state.button_non_fraud = False
+
+        # Fungsi tombol fraud
+        def click_button_fraud():
+            st.session_state.button_fraud = not st.session_state.button_fraud
+            st.session_state.button_non_fraud = False  # Optional: supaya hanya satu aktif
+
+# Fungsi tombol non-fraud
+        def click_button_non_fraud():
+            st.session_state.button_non_fraud = not st.session_state.button_non_fraud
+            st.session_state.button_fraud = False  # Optional
+
+# Tombol-tombol
+        st.button('Transaksi Fraud', on_click=click_button_fraud)
+        st.button('Transaksi Non-Fraud', on_click=click_button_non_fraud)
+
+# Tampilkan dataframe sesuai tombol
+        if st.session_state.button_fraud:
             df_fraud = df[df['Cluster'] == 'Fraud']
             st.dataframe(df_fraud)
 
-        if 'non' not in st.session_state:
-            st.session_state.non = False
-        
-        def click_button_non():
-            st.session_state.non = not st.session_state.non
-
-        st.button('Transaksi Non-Fraud', on_click=click_button_non)        
-        
-        if st.session_state.button:
+        if st.session_state.button_non_fraud:
             df_non_fraud = df[df['Cluster'] == 'Non-Fraud']
-            st.dataframe( df_non_fraud)
+            st.dataframe(df_non_fraud)
     except Exception as e:
         st.error(f"❌ Terjadi error saat menjalankan pipeline: {e}")
