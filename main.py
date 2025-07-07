@@ -90,7 +90,7 @@ if uploaded_file:
         st.session_state.button = False
         
         def click_button():
-        st.session_state.button = not st.session_state.button
+            st.session_state.button = not st.session_state.button
 
         st.button('Click me', on_click=click_button)
         df_fraud = df[df['Cluster'] == 'Fraud']
