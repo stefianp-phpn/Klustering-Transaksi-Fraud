@@ -86,8 +86,9 @@ if uploaded_file:
         df['Cluster'] = df['Cluster'].replace({0 : 'Fraud', 1 : 'Non-Fraud', -1 : 'Non-Fraud'})        
         st.dataframe(df)
         
-        df_fraud = df[df['Cluster'] == 'Fraud']
-        st.dataframe(df_fraud)        
+        st.button("Transaksi Fraud")
+        #df_fraud = df[df['Cluster'] == 'Fraud']
+        #st.dataframe(df_fraud)        
 
     except Exception as e:
         st.error(f"❌ Terjadi error saat menjalankan pipeline: {e}")
