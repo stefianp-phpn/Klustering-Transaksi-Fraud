@@ -22,7 +22,10 @@ cat_cols = ['AccountID', 'TransactionType', 'Location', 'DeviceID', 'IP Address'
 expected_columns = num_cols + cat_cols
 
 st.title("🔍 Clustering Dataset (DBSCAN)")
-
+st.write()
+st.write("Pastikan Dataset yang diupload memuat kolom-kolom yang dibutuhkan")
+st.write("Kolom Object : AccountID, TransactionType, Location, DeviceID, IP Address, MerchantID, Channel, CustomerOccupation")
+st.write("Kolom Numerik : TransactionAmount, CustomerAge, TransactionDuration, LoginAttempts, AccountBalance, time_deff, Mean_Transaction, Mean_Account_Balance")
 uploaded_file = st.file_uploader("📂 Upload CSV Dataset", type=["csv"])
 if uploaded_file:
     df = pd.read_csv(uploaded_file)
