@@ -87,7 +87,7 @@ if uploaded_file:
         st.dataframe(df)
         
         df_fraud = df[df['Cluster'] == 'Fraud']
-        st.datafame(df_fraud)        
+        st.dataframe(df_fraud)        
 
     except Exception as e:
         st.error(f"❌ Terjadi error saat menjalankan pipeline: {e}")
