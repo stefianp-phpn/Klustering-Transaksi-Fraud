@@ -86,7 +86,7 @@ if uploaded_file:
         df['Cluster'] = df['Cluster'].replace({0 : 'Fraud', 1 : 'Non-Fraud', -1 : 'Non-Fraud'})        
         st.dataframe(df)
         
-        df_fraud = df['Cluster'] == 'Fraud'
+        df_fraud = df[df['Cluster'] == 'Fraud']
         st.datafame(df_fraud)        
 
     except Exception as e:
