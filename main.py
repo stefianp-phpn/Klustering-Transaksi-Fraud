@@ -66,7 +66,7 @@ if uploaded_file:
 
         # Step 3: Gabungkan
         combined = pd.concat([scaled_df.reset_index(drop=True), encoded_df.reset_index(drop=True)], axis=1)
-        st.dataframe(combined.head())
+        #st.dataframe(combined.head())
                 
         # Step 4: SVD + DBSCAN
         reduced = svd.transform(combined)
