@@ -11,6 +11,7 @@ def convert_df_to_csv(df):
     return df.to_csv(index=False).encode('utf-8')
 
 
+
 # Load model dari file tunggal
 modul_dict = joblib.load('modul.pkl')
 
@@ -20,6 +21,22 @@ svd = modul_dict['svd']
 dbscan = modul_dict['dbscan']
 encoded_columns = modul_dict['encoded_columns']  # typo: tadi kamu tulis encoded_column (singular)
 numerik_cols = joblib.load('num_cols.pkl')
+
+st.write("---")
+st.subheader("Gunakan Contoh Dataset")
+st.write("Anda bisa mengunduh contoh dataset di bawah ini untuk melihat format yang dibutuhkan.")
+
+sample_df = pd.DataFrame(my_data.csv)
+st.dataframe(sample_df)
+
+# Tombol untuk mengunduh contoh dataset
+st.download_button(
+   label="📥 Unduh Contoh Dataset (CSV)",
+   data=csv_sample,
+   file_name='contoh_dataset_fraud.csv',
+   mime='text/csv',
+)
+st.write("---")
 
 # Kolom input
 num_cols = ['TransactionAmount', 'CustomerAge', 'TransactionDuration', 'LoginAttempts',
@@ -35,6 +52,7 @@ st.write()
 st.write("Pastikan Dataset yang diupload memuat kolom-kolom yang dibutuhkan")
 st.write("Kolom Object : AccountID, TransactionType, Location, DeviceID, IP Address, MerchantID, Channel, CustomerOccupation")
 st.write("Kolom Numerik : TransactionAmount, CustomerAge, TransactionDuration, LoginAttempts, AccountBalance, time_deff, Mean_Transaction, Mean_Account_Balance")
+
 uploaded_file = st.file_uploader("📂 Upload CSV Dataset", type=["csv"])
 if uploaded_file:
     df = pd.read_csv(uploaded_file)
