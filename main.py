@@ -2,6 +2,15 @@ import streamlit as st
 import pandas as pd
 import joblib
 
+# Fungsi untuk mengonversi DataFrame ke CSV agar bisa diunduh
+@st.cache_data
+def convert_df_to_csv(df):
+    """
+    Mengonversi DataFrame ke format CSV (UTF-8) tanpa indeks.
+    """
+    return df.to_csv(index=False).encode('utf-8')
+
+
 # Load model dari file tunggal
 modul_dict = joblib.load('modul.pkl')
 
