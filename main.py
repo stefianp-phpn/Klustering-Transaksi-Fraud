@@ -2,6 +2,12 @@ import streamlit as st
 import pandas as pd
 import joblib
 
+# \--- Fungsi Konversi & Model ---
+@st.cache\_data
+def convert\_df\_to\_csv(df):
+"""Mengonversi DataFrame ke format CSV (UTF-8) tanpa indeks."""
+return df.to\_csv(index=False).encode('utf-8')
+
 # Load model dari file tunggal
 modul_dict = joblib.load('modul.pkl')
 
@@ -26,6 +32,25 @@ st.write()
 st.write("Pastikan Dataset yang diupload memuat kolom-kolom yang dibutuhkan")
 st.write("Kolom Object : AccountID, TransactionType, Location, DeviceID, IP Address, MerchantID, Channel, CustomerOccupation")
 st.write("Kolom Numerik : TransactionAmount, CustomerAge, TransactionDuration, LoginAttempts, AccountBalance, time_deff, Mean_Transaction, Mean_Account_Balance")
+
+# \--- Bagian Unduh Template Kosong ---
+st.subheader("1. Unduh Template")
+st.write("Jika Anda belum memiliki dataset, unduh template di bawah ini dan isi sesuai format.")
+
+# Membuat DataFrame kosong hanya dengan header
+template\_df = pd.DataFrame(columns=expected\_columns)
+
+# Menyiapkan template untuk diunduh
+csv\_template = convert\_df\_to\_csv(template\_df)
+
+st.download\_button(
+label="📥 Unduh Template Kosong (CSV)",
+data=csv\_template,
+file\_name='template\_transaksi.csv',
+mime='text/csv',
+)
+st.write("---")
+
 uploaded_file = st.file_uploader("📂 Upload CSV Dataset", type=["csv"])
 if uploaded_file:
     df = pd.read_csv(uploaded_file)
