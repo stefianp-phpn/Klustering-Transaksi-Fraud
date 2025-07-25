@@ -5,7 +5,7 @@ import joblib
 # \--- Fungsi Konversi & Model ---
 #@st.cache\_data
 def convert_df_to_csv(df):
-"""Mengonversi DataFrame ke format CSV (UTF-8) tanpa indeks."""
+            """Mengonversi DataFrame ke format CSV (UTF-8) tanpa indeks."""
 return df.to\_csv(index=False).encode('utf-8')
 
 # Load model dari file tunggal
