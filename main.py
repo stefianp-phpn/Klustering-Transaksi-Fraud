@@ -87,7 +87,7 @@ if uploaded_file:
         st.dataframe(df)
 
         if 'button_fraud' not in st.session_state:
-        st.session_state.button_fraud = False
+            st.session_state.button_fraud = False
             st.session_state.button_fraud = False
 
         if 'button_non_fraud' not in st.session_state:
