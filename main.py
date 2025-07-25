@@ -2,16 +2,6 @@ import streamlit as st
 import pandas as pd
 import joblib
 
-# Fungsi untuk mengonversi DataFrame ke CSV agar bisa diunduh
-@st.cache_data
-def convert_df_to_csv(df):
-    """
-    Mengonversi DataFrame ke format CSV (UTF-8) tanpa indeks.
-    """
-    return df.to_csv(index=False).encode('utf-8')
-
-
-
 # Load model dari file tunggal
 modul_dict = joblib.load('modul.pkl')
 
@@ -21,22 +11,6 @@ svd = modul_dict['svd']
 dbscan = modul_dict['dbscan']
 encoded_columns = modul_dict['encoded_columns']  # typo: tadi kamu tulis encoded_column (singular)
 numerik_cols = joblib.load('num_cols.pkl')
-
-st.write("---")
-st.subheader("Gunakan Contoh Dataset")
-st.write("Anda bisa mengunduh contoh dataset di bawah ini untuk melihat format yang dibutuhkan.")
-
-sample_df = pd.DataFrame(my_data.csv)
-st.dataframe(sample_df)
-
-# Tombol untuk mengunduh contoh dataset
-st.download_button(
-   label="📥 Unduh Contoh Dataset (CSV)",
-   data=csv_sample,
-   file_name='contoh_dataset_fraud.csv',
-   mime='text/csv',
-)
-st.write("---")
 
 # Kolom input
 num_cols = ['TransactionAmount', 'CustomerAge', 'TransactionDuration', 'LoginAttempts',
@@ -52,7 +26,6 @@ st.write()
 st.write("Pastikan Dataset yang diupload memuat kolom-kolom yang dibutuhkan")
 st.write("Kolom Object : AccountID, TransactionType, Location, DeviceID, IP Address, MerchantID, Channel, CustomerOccupation")
 st.write("Kolom Numerik : TransactionAmount, CustomerAge, TransactionDuration, LoginAttempts, AccountBalance, time_deff, Mean_Transaction, Mean_Account_Balance")
-
 uploaded_file = st.file_uploader("📂 Upload CSV Dataset", type=["csv"])
 if uploaded_file:
     df = pd.read_csv(uploaded_file)
@@ -79,8 +52,8 @@ if uploaded_file:
         encoded_df = pd.DataFrame(encoded_array, columns=temp_column)
         encoded_df = encoded_df.reindex(columns=encoded_columns, fill_value=0)
         #st.dataframe(encoded_df.head(10))
-        
-               
+
+
         #missing = set(encoded_columns) - set(encoded_df.columns)
         #extra = set(encoded_df.columns) - set(encoded_columns)
         #st.write("❗ Kolom hilang dari data saat ini:", missing)
@@ -88,7 +61,7 @@ if uploaded_file:
         #st.dataframe(df[cat_cols].head())
         #st.dataframe(df[num_cols].head())
         #st.write("Tipe data numerik kolom:", type(numerik_cols))
-                
+
         # Step 2: Scaling
         scaled_array = scaler.transform(df[num_cols])
         scaled_df = pd.DataFrame(scaled_array, columns=numerik_cols)
@@ -97,7 +70,7 @@ if uploaded_file:
         # Step 3: Gabungkan
         combined = pd.concat([scaled_df.reset_index(drop=True), encoded_df.reset_index(drop=True)], axis=1)
         #st.dataframe(combined.head())
-                
+
         # Step 4: SVD + DBSCAN
         reduced = svd.transform(combined)
         #st.write(reduced[0:4])        
@@ -112,8 +85,9 @@ if uploaded_file:
         st.write()
         df['Cluster'] = df['Cluster'].replace({0 : 'Fraud', 1 : 'Non-Fraud', -1 : 'Non-Fraud'})        
         st.dataframe(df)
-        
+
         if 'button_fraud' not in st.session_state:
+        st.session_state.button_fraud = False
             st.session_state.button_fraud = False
 
         if 'button_non_fraud' not in st.session_state:
