@@ -38,15 +38,15 @@ st.subheader("1. Unduh Template")
 st.write("Jika Anda belum memiliki dataset, unduh template di bawah ini dan isi sesuai format.")
 
 # Membuat DataFrame kosong hanya dengan header
-template\_df = pd.DataFrame(columns=expected\_columns)
+template_df = pd.DataFrame(columns=expected_columns)
 
 # Menyiapkan template untuk diunduh
-csv\_template = convert\_df\_to\_csv(template\_df)
+csv_template = convert_df_to_csv(template_df)
 
-st.download\_button(
+st.download_button(
 label="📥 Unduh Template Kosong (CSV)",
-data=csv\_template,
-file\_name='template\_transaksi.csv',
+data=csv_template,
+file_name='template_transaksi.csv',
 mime='text/csv',
 )
 st.write("---")
